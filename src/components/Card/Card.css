@@ -1,0 +1,95 @@
+.card {
+  width: 600px;
+  padding: 20px;
+  margin: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user__avatar {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.user__avatar-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card__user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user__name {
+  font-weight: bold;
+}
+
+.user__name:hover,
+.card__button-like:hover {
+  text-decoration: underline;
+}
+
+.user__nick {
+  font-size: 14px;
+  color: #6B778D;
+}
+
+.card__description {
+  font-size: 18px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.card__picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  margin-bottom: 20px;
+}
+
+.card__picture-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.card__statistics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #6B778D;
+}
+
+.truncate-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.card.is-loading .card__picture {
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+.card.is-loading .card__picture .card__picture-img {
+  display: none;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

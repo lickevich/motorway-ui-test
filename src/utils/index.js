@@ -1,0 +1,1 @@
+export { getPublicationDate } from './getPublicationDate';
