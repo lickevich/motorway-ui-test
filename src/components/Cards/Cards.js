@@ -4,7 +4,7 @@ import { Spinner } from '../Spinner';
 import './Cards.css';
 
 const Cards = (props) => {
-  const { isLoading, items = [] } = props;
+  const { openModal, setCurrentImg, isLoading, items = [] } = props;
 
   if (isLoading) {
     return <Spinner />;
@@ -15,15 +15,17 @@ const Cards = (props) => {
       {items.map((item) => (
         <Card
           key={item.id}
-          imageUrl={`${item.url}.jpg`}
-          imageAlt={item.alt_description}
+          imgUrl={`${item.url}.jpg`}
+          imgAlt={item.alt_description}
           avatarUrl={`${item.user.profile_image}.webp`}
           avatarAlt={item.user.name}
           name={item.user.name}
           nick={item.user.username}
-          publication={item.created_at}
+          posted={item.created_at}
           likes={item.likes}
           description={item.description}
+          openModal={openModal}
+          setCurrentImg={setCurrentImg}
         />
       ))}
     </ul>

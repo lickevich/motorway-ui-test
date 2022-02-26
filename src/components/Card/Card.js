@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './Card.css';
 import { getPublicationDate } from '../../utils';
 import { useOnScreen } from '../../hooks';
+import './Card.css';
 
 const Card = (props) => {
   const {
-    imageUrl,
-    imageAlt,
+    imgUrl,
+    imgAlt,
     avatarUrl,
     avatarAlt,
     name,
     nick,
-    publication,
+    posted,
     likes,
     description,
+    openModal,
+    setCurrentImg,
   } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,9 +23,19 @@ const Card = (props) => {
   const cardRef = useRef(null);
   const onScreen = useOnScreen(cardRef, '20px');
 
-  const publicationDate = getPublicationDate(publication);
+  const publicationDate = getPublicationDate(posted);
   const cardClassName = isLoaded ? 'card' : 'card is-loading';
+
   const onImgLoad = () => setIsLoaded(true);
+  const handlePictureClick = () => {
+    if (!isLoaded) return;
+
+    setCurrentImg({
+      url: imgUrl,
+      alt: imgAlt,
+    });
+    openModal();
+  };
 
   useEffect(() => {
     if (onScreen && imgRef.current) {
@@ -33,35 +45,33 @@ const Card = (props) => {
 
   return (
     <li ref={cardRef} className={cardClassName}>
-      <div className="card__user">
-        <figure className="user__avatar">
+      <div className="card-user">
+        <figure className="user-avatar">
           {onScreen && (
             <img
               ref={imgRef}
-              className="user__avatar-img"
+              className="user-avatar-img"
               src={avatarUrl}
               alt={`avatar-${avatarAlt}`}
             />
           )}
         </figure>
-        <div className="user__info">
-          <a className="user__name" href="#">
+        <div className="user-info">
+          <a className="user-name" href="#">
             {name}
           </a>
-          <div className="user__nick">{`@${nick}`}</div>
+          <div className="user-nick">{`@${nick}`}</div>
         </div>
       </div>
-      <div className="card__description truncate-overflow">{description}</div>
-      <figure className="card__picture">
+      <div className="card-description">{description}</div>
+      <figure className="card-picture" onClick={handlePictureClick}>
         {onScreen && (
-          <img className="card__picture-img" src={imageUrl} alt={imageAlt} />
+          <img className="card-picture-img" src={imgUrl} alt={imgAlt} />
         )}
       </figure>
-      <div className="card__statistics">
-        <span className="card__publication-date">
-          Posted: {publicationDate}
-        </span>
-        <span className="card__likes">Likes: {likes}</span>
+      <div className="card-statistics">
+        <span className="card-publication-date">Posted: {publicationDate}</span>
+        <span className="card-likes">Likes: {likes}</span>
       </div>
     </li>
   );
