@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getPublicationDate } from '../../utils';
 import { useOnScreen } from '../../hooks';
 import './Card.css';
@@ -27,7 +27,7 @@ const Card = (props) => {
   const cardClassName = isLoaded ? 'card' : 'card is-loading';
 
   const onImgLoad = () => setIsLoaded(true);
-  const handlePictureClick = () => {
+  const handlePictureClick = useCallback(() => {
     if (!isLoaded) return;
 
     setCurrentImg({
@@ -35,7 +35,7 @@ const Card = (props) => {
       alt: imgAlt,
     });
     openModal();
-  };
+  }, [isLoaded]);
 
   useEffect(() => {
     if (onScreen && imgRef.current) {
@@ -77,4 +77,4 @@ const Card = (props) => {
   );
 };
 
-export { Card };
+export default Card;

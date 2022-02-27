@@ -4,6 +4,16 @@
   margin: 0 auto;
 }
 
+.content {
+  display: flex;
+  margin-top: 20px;
+}
+
+.left-block {
+  margin-right: 20px;
+  width: 400px;
+}
+
 .full-size-img {
   max-height: 80vh;
   height: 100%;

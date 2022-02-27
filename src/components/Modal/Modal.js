@@ -1,4 +1,3 @@
-import React from 'react';
 import { createPortal } from 'react-dom';
 import './Modal.css';
 
@@ -27,4 +26,4 @@ const Modal = (props) => {
   );
 };
 
-export { Modal };
+export default Modal;

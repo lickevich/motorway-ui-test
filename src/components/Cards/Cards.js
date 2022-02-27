@@ -1,18 +1,15 @@
-import React from 'react';
-import { Card } from '../Card';
-import { Spinner } from '../Spinner';
+import { useRequest } from '../../hooks';
+import Card from '../Card';
 import './Cards.css';
 
 const Cards = (props) => {
-  const { openModal, setCurrentImg, isLoading, items = [] } = props;
+  const { openModal, setCurrentImg } = props;
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  const items = useRequest('images?limit=10');
 
   return (
     <ul className="cards">
-      {items.map((item) => (
+      {items?.map((item) => (
         <Card
           key={item.id}
           imgUrl={`${item.url}.jpg`}
@@ -32,4 +29,4 @@ const Cards = (props) => {
   );
 };
 
-export { Cards };
+export default Cards;
