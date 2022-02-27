@@ -13,7 +13,7 @@ const Form = () => {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit} noValidate>
       <div className="form-row">
         <label className="form-label">Name</label>
         <input
